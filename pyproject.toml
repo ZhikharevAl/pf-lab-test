@@ -1,0 +1,78 @@
+[project]
+name = "pf-lab-test"
+version = "0.1.0"
+description = "Test task for Performance Lab"
+readme = "README.md"
+authors = [{ name = "AlexeyZh", email = "waltafunk@gmail.com" }]
+requires-python = ">=3.13"
+dependencies = []
+
+[tool.uv]
+dev-dependencies = [
+    "pyright>=1.1.400",
+    "ruff>=0.11.9",
+    "pytest>=8.3.5",
+    "pre-commit>=4.2.0",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py313"
+
+[tool.ruff.lint]
+select = ["ALL"]
+ignore = [
+    "D203",    # one-blank-line-before-class
+    "D212",    # multi-line-summary-first-line
+    "D100",    # missing-docstring-in-public-module
+    "S101",    # assert (используется в тестах)
+    "PLR2004", # magic-value-comparison
+    "COM812",  # missing-trailing-comma
+    "ISC001",  # single-line-implicit-string-concatenation
+    "N812",    # Lowercase `expected_conditions` imported as non-lowercase
+    "S311",    # Standard pseudo-random generators are not suitable for cryptographic purposes
+    "PGH003",  # use specific rule codes when ignoring type issues
+    "S105",    # hard-coded password
+    "PLR0913", # too-many-arguments (для аргументов командной строки в заданиях)
+    "PLR0915", # too-many-statements (для сложных функций в заданиях)
+]
+fixable = ["ALL"]
+unfixable = []
+
+[tool.ruff.lint.mccabe]
+max-complexity = 10
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = ["F401", "D104"]
+"tests/*.py" = [
+    "S101",
+    "D100",
+    "D103",
+]
+[tool.ruff.lint.isort]
+known-third-party = ["pytest"]
+
+[tool.ruff.lint.pylint]
+max-args = 7
+max-returns = 3
+max-statements = 50
+max-branches = 12
+
+[tool.ruff.lint.flake8-pytest-style]
+fixture-parentheses = false
+mark-parentheses = false
+
+[tool.ruff.lint.flake8-bugbear]
+extend-immutable-calls = ["pytest.mark.parametrize", "pytest.fixture"]
+
+[tool.ruff.lint.pep8-naming]
+classmethod-decorators = ["classmethod", "pytest.fixture"]
+
+[tool.pyright]
+exclude = [".venv", "**/__pycache__"]
+pythonVersion = "3.13"
+venvPath = "."
+venv = ".venv"
