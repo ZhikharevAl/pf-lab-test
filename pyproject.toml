@@ -40,6 +40,7 @@ ignore = [
     "S105",    # hard-coded password
     "PLR0913", # too-many-arguments (для аргументов командной строки в заданиях)
     "PLR0915", # too-many-statements (для сложных функций в заданиях)
+    "TRY301", # too-many-try-statements
 ]
 fixable = ["ALL"]
 unfixable = []
